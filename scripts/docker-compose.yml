@@ -1,6 +1,6 @@
 services:
   wrf:
-    image: ghcr.io/${IMAGE_NAME}:master
+    image: ghcr.io/${IMAGE_NAME}:main
     container_name: wrf
     volumes:
       - ${CONTAINER_PIPE_PATH:-./wrf_docker}:/home/wrfuser/os_pipe

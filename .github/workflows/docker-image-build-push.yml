@@ -2,12 +2,12 @@ name: Docker image build and push
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
     tags: [ 'v*.*.*' ]
     paths:
       - 'Dockerfile'
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
     paths:
       - 'Dockerfile'
 

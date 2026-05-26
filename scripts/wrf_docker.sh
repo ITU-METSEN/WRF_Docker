@@ -59,7 +59,7 @@ export CONTAINER_PIPE_PATH="$DATA_PATH"
 export IMAGE_NAME="$GITHUB_REPO"
 
 echo "Downloading Docker Compose..."
-curl -sSL -o docker-compose.yml https://raw.githubusercontent.com/$GITHUB_REPO/master/scripts/docker-compose.yml
+curl -sSL -o docker-compose.yml https://raw.githubusercontent.com/$GITHUB_REPO/main/scripts/docker-compose.yml
 
 echo ""
 echo "Pulling the latest WRF image from ghcr.io/$GITHUB_REPO..."
