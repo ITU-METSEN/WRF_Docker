@@ -17,8 +17,11 @@ Ubuntu 24.04 LTS, WRF version 4.6.1 and WPS 4.6.0 used.
   The Windows native script has not yet been tested, use it at your own risk.
   
 - **After container has been built:**
-  - `docker start wrf` For starting, stopped container.
-  - `docker stop wrf` For stopping, running container.
+  - `./WRF4.6.1_Install.bash` for compiling WRF
+  
+  After compilation:
+  - `docker start wrf` for starting the container.
+  - `docker stop wrf` for stopping the container.
 
 
 ## Prerequisites
@@ -29,12 +32,13 @@ Ubuntu 24.04 LTS, WRF version 4.6.1 and WPS 4.6.0 used.
 ## Features
 - WRF installation script.
 - Conda environment for visualizations, `conda activate pywrf`.
-- Pipe for fast file transfer between the os and the container.
+- Pipe folder for fast file transfer between the os and the container.
 
 ## Directory Structure
 
 - `/scripts` – Scripts for building, installing, and running WRF
 - `Dockerfile` – Instructions to build the standard environment
+- `/.github/workflows` - Automated image build and push to ghcr.
 
 ## Contributing
 
