@@ -46,7 +46,7 @@ Contributions are welcome! If you find issues or have enhancements, please open 
 
 ## License
 
-This project is open-source and available under the [Apache License 2.0 License](LICENSE).
+This project is open-source and available under the [The GNU General Public License v3.0](LICENSE).
 
 ## Contact
 
