@@ -2,7 +2,7 @@
 
 This project aims to provide a controlled environment for running test simulations on WRF and provide a learning platform for WRF alonside with the tools that are required to visualize the output data.
 
-Ubuntu 24.04 LTS, WRF version 4.6.1 and WPS  used.
+Ubuntu 24.04 LTS, WRF version 4.6.1 and WPS 4.6.0 used.
 
 ## Usage
 
@@ -47,9 +47,6 @@ This project is open-source and available under the [Apache License 2.0 License]
 ## Contact
 
 For questions or support, please open an issue or contact the maintainer.
-
-
-
 
 
 ## Acknowledgments & Credits
