@@ -44,10 +44,6 @@ Ubuntu 24.04 LTS, WRF version 4.6.1 and WPS 4.6.0 used.
 
 Contributions are welcome! If you find issues or have enhancements, please open an issue or submit a pull request.
 
-## License
-
-This project is open-source and available under the [The GNU General Public License v3.0](LICENSE).
-
 ## Contact
 
 For questions or support, please open an issue or contact the maintainer.
