@@ -4,15 +4,17 @@ This project aims to provide a controlled environment for running test simulatio
 
 Ubuntu 24.04 LTS, WRF version 4.6.1 and WPS 4.6.0 used.
 
+Will not work on arm based cpus, this inculudes Macbooks with M series cpus.
+
 ## Usage
 
-- **On UNIX-like systems and WSL:**
+- **One-liner code for WSL:**
   ```sh
   bash -c "$(curl -sSL https://raw.githubusercontent.com/itu-metsen/wrf_docker/master/scripts/wrf_docker.sh)"
   ```
   At the installation pipe folder location between the os and the container will be asked. Default path is `$USR/Documents/wrf_docker`.
   
-  On WSL you will be need to navigate to there for file transfer between the container and the os.
+  On WSL you will be need to navigate to pipe for file transfer between the container and the os.
   
   The Windows native script has not yet been tested, use it at your own risk.
   
