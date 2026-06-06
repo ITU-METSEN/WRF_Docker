@@ -53,6 +53,7 @@ echo "Setting up pipe directory at: $DATA_PATH"
 mkdir -p "$DATA_PATH"
 # ---------------------
 
+alias wrfdckr="bash -c "$(curl -sSL https://raw.githubusercontent.com/itu-metsen/wrf_docker/master/scripts/wrf_docker.sh)" "
 
 # ---------------------
 export CONTAINER_PIPE_PATH="$DATA_PATH"
