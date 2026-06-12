@@ -45,14 +45,16 @@ echo ""
 echo "Setting up pipe directory at: $DATA_PATH"
 mkdir -p "$DATA_PATH"
 
-SHELL=$(basename $SHELL)
+
+CSHELL=$(basename $SHELL)
 ALIAS='alias wrfdckr="bash -c "$(curl -sSL https://raw.githubusercontent.com/itu-metsen/wrf_docker/dev/scripts/wrf_docker.sh)""'
 
-if [[ "$SHELL" == "zsh" ]]; then
+if [[ "$CSHELL" == "zsh" ]]; then
     echo "$ALIAS" >> $HOME/.zshrc
-elif [[ "$SHELL" == "bash" ]]; then
-    echo "$ALIAS" >> $HOME/.zshrc
+elif [[ "$CSHELL" == "bash" ]]; then
+    echo "$ALIAS" >> $HOME/.bashrc
 fi
+
 
 export CONTAINER_PIPE_PATH="$DATA_PATH"
 export IMAGE_NAME="$GITHUB_REPO"
