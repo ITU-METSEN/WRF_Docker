@@ -4,14 +4,10 @@ echo "========================================"
 echo "            WRF Docker Setup"
 echo "========================================"
 
-# ---------------------
 GITHUB_REPO="itu-metsen/wrf_docker"
 DEFAULT_PATH="$HOME/Documents/wrf_docker"
 CONTAINER_NAME="wrf"
-# ---------------------
 
-
-# ---------------------
 if docker ps -a --format '{{.Names}}' | grep -Eq "^${CONTAINER_NAME}\$"; then
     if docker ps --format '{{.Names}}' | grep -Eq "^${CONTAINER_NAME}\$"; then
         echo "Container "$CONTAINER_NAME" is already running."
@@ -28,10 +24,7 @@ if docker ps -a --format '{{.Names}}' | grep -Eq "^${CONTAINER_NAME}\$"; then
         exit 0
     fi
 fi
-# ---------------------
 
-
-# ---------------------
 echo ""
 echo "Where would you like to create the WRF container pipe on this machine?"
 read -p "Enter a path (Press Enter for default: ${DEFAULT_PATH}): " USER_PATH < /dev/tty
@@ -51,11 +44,16 @@ fi
 echo ""
 echo "Setting up pipe directory at: $DATA_PATH"
 mkdir -p "$DATA_PATH"
-# ---------------------
 
-alias wrfdckr="bash -c "$(curl -sSL https://raw.githubusercontent.com/itu-metsen/wrf_docker/dev/scripts/wrf_docker.sh)" "
+SHELL=$(basename $SHELL)
+ALIAS='alias wrfdckr="bash -c "$(curl -sSL https://raw.githubusercontent.com/itu-metsen/wrf_docker/dev/scripts/wrf_docker.sh)""'
 
-# ---------------------
+if [[ "$SHELL" == "zsh" ]]; then
+    echo "$ALIAS" >> $HOME/.zshrc
+elif [[ "$SHELL" == "bash" ]]; then
+    echo "$ALIAS" >> $HOME/.zshrc
+fi
+
 export CONTAINER_PIPE_PATH="$DATA_PATH"
 export IMAGE_NAME="$GITHUB_REPO"
 
