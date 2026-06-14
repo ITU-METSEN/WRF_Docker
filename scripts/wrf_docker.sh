@@ -47,7 +47,7 @@ mkdir -p "$DATA_PATH"
 
 
 CSHELL=$(basename $SHELL)
-ALIAS='alias wrfdckr="bash -c "$(curl -sSL https://raw.githubusercontent.com/itu-metsen/wrf_docker/dev/scripts/wrf_docker.sh)""'
+ALIAS='alias wrfdckr="bash -c "$(curl -sSL https://raw.githubusercontent.com/itu-metsen/wrf_docker/main/scripts/wrf_docker.sh)""'
 
 if [[ "$CSHELL" == "zsh" ]]; then
     echo "$ALIAS" >> $HOME/.zshrc
