@@ -2,6 +2,10 @@
 set -e
 
 GEOG_DIR="/home/wrfuser/WPS_GEOG"
+WRF_DATA_DIR="/home/wrfuser/wrf_data"
+
+sudo chown -R wrfuser:wrfuser "$GEOG_DIR"
+sudo chown -R wrfuser:wrfuser "$WRF_DATA_DIR"
 
 if [ ! -d "$GEOG_DIR" ] || [ -z "$(ls -A $GEOG_DIR 2> /dev/null)" ]; then
     echo "WPS_GEOG data not found. Starting download..."

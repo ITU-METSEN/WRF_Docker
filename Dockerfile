@@ -22,7 +22,8 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
     rm ~/miniconda.sh
 ENV PATH="/home/wrfuser/miniconda/bin:$PATH"
 
-RUN conda init bash
+RUN conda init bash && \
+    conda config --set auto_activate_base false
 RUN conda install -n base -c conda-forge --override-channels conda-anaconda-tos -y && \
     conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main && \
     conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
