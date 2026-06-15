@@ -12,14 +12,14 @@ if docker ps -a --format '{{.Names}}' | grep -Eq "^${CONTAINER_NAME}\$"; then
         echo "Container "$CONTAINER_NAME" is already running."
         echo "Opening shell."
         exec < /dev/tty
-        docker exec -it $CONTAINER_NAME bash
+        docker exec -it -u wrfuser $CONTAINER_NAME bash
         exit 0
     else
         echo "Container "$CONTAINER_NAME" exists but is stopped."
         echo "Starting it up and opening shell."
         docker start $CONTAINER_NAME
         exec < /dev/tty
-        docker exec -it $CONTAINER_NAME bash
+        docker exec -it -u wrfuser $CONTAINER_NAME bash
         exit 0
     fi
 fi
@@ -77,7 +77,7 @@ echo ""
 echo "=============================================="
 echo "Checking WPS_GEOG Data (This may take a while)"
 echo "=============================================="
-sed '/Creating \/home\/wrfuser\/.cdsapirc/ q' < <(docker logs -f $CONTAINER_NAME 2>&1)
+docker logs -f $CONTAINER_NAME 2>&1 | awk '{print} /Creating \/home\/wrfuser\/.cdsapirc/{exit}'
 pkill -f "docker logs -f $CONTAINER_NAME" 2>/dev/null
 
 echo ""
