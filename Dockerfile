@@ -1,10 +1,7 @@
-FROM ubuntu:24.04
+FROM --platform=linux/amd64 ubuntu:24.04
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG=en_US.UTF-8
 
-###############################################################################
-# Package installations
-###############################################################################
 RUN apt-get update && apt-get install -y \
     sudo wget curl git neovim eza \
     file build-essential csh gfortran m4 perl \
@@ -13,18 +10,13 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 
-###############################################################################
-# User setting and sudo conf 
-###############################################################################
 RUN userdel -r ubuntu && \
     useradd -m -u 1000 -s /bin/bash wrfuser && \
     echo "wrfuser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 USER wrfuser
 WORKDIR /home/wrfuser
 
-###############################################################################
-# Conda installation and environment creation
-###############################################################################
+
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
     bash ~/miniconda.sh -b -p /home/wrfuser/miniconda && \
     rm ~/miniconda.sh
@@ -37,24 +29,24 @@ RUN conda install -n base -c conda-forge --override-channels conda-anaconda-tos 
 RUN conda install -n base conda-libmamba-solver -y && \
     conda config --set solver libmamba
 
-RUN conda create -n pywrf -c conda-forge --override-channels -y python=3.11 wrf-python netcdf4 cartopy matplotlib xarray metpy "geopandas>=0.14"
+RUN conda create -n pywrf -c conda-forge --override-channels -y python=3.11 wrf-python netcdf4 cartopy matplotlib xarray metpy "geopandas>=0.14" && \
+    conda activate pywrf && \
+    pip install "cdsapi>=0.7.7" && \
+    conda deactivate
+
+RUN mkdir /home/wrfuser/wrf_data
 
 
-###############################################################################
-# Pipe creation to the OS
-###############################################################################
-RUN mkdir /home/wrfuser/os_pipe
-
-###############################################################################
-
-###############################################################################
 RUN git clone https://github.com/HathewayWill/WRF_Python_Scripts.git
-RUN curl -fsSL -o WRF4.6.1_Install.bash https://raw.githubusercontent.com/ITU-METSEN/WRF_Docker/master/scripts/WRF4.6.1_Install.bash \
-    && chmod +x WRF4.6.1_Install.bash
+RUN curl -fsSL -o WRF4.8.0_Install.bash https://raw.githubusercontent.com/ITU-METSEN/WRF_Docker/master/scripts/WRF4.8.0_Install.bash \
+    && chmod +x WRF4.8.0_Install.bash
+RUN ./WRF4.8.0_Install.bash -arw
 
-###############################################################################
-# Aliaes
-###############################################################################
+COPY --chown=wrfuser:wrfuser entrypoint.sh /home/wrfuser/entrypoint.sh
+RUN chmod +x /home/wrfuser/entrypoint.sh
+ENTRYPOINT ["/home/wrfuser/entrypoint.sh"]
+
+
 RUN echo "alias ls='eza -l --color=always --group-directories-first --icons=always \$@ --git'" >> /home/wrfuser/.bashrc && \
     echo "alias la='eza -la --color=always --group-directories-first --icons=always \$@ --git'" >> /home/wrfuser/.bashrc && \
     echo "alias ll='eza -l --color=always --group-directories-first --icons=always \$@ --git'" >> /home/wrfuser/.bashrc && \
