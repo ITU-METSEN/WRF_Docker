@@ -77,7 +77,8 @@ echo ""
 echo "=============================================="
 echo "Checking WPS_GEOG Data (This may take a while)"
 echo "=============================================="
-grep -m 1 "Creating /home/wrfuser/.cdsapirc" <(docker logs -f $CONTAINER_NAME)
+sed '/Creating \/home\/wrfuser\/.cdsapirc/ q' < <(docker logs -f $CONTAINER_NAME 2>&1)
+pkill -f "docker logs -f $CONTAINER_NAME" 2>/dev/null
 
 echo ""
 echo "Container is up. Opening shell..."
