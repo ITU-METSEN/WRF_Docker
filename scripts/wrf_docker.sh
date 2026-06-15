@@ -50,7 +50,7 @@ read -p "Enter your CDS Api Key:" API_KEY < /dev/tty
 export CDS_API_KEY="$API_KEY"
 #################################################
 CSHELL=$(basename $SHELL)
-ALIAS='alias wrfdckr="bash -c "$(curl -sSL https://raw.githubusercontent.com/itu-metsen/wrf_docker/main/scripts/wrf_docker.sh)""'
+ALIAS="alias wrfdckr='bash -c \"\$(curl -sSL https://raw.githubusercontent.com/itu-metsen/wrf_docker/main/scripts/wrf_docker.sh)\"'"
 
 if [[ "$CSHELL" == "zsh" ]]; then
     echo "$ALIAS" >> $HOME/.zshrc
@@ -77,7 +77,7 @@ echo ""
 echo "=============================================="
 echo "Checking WPS_GEOG Data (This may take a while)"
 echo "=============================================="
-docker logs -f $CONTAINER_NAME | grep -m 1 "Creating /home/wrfuser/.cdsapirc"
+grep -m 1 "Creating /home/wrfuser/.cdsapirc" <(docker logs -f $CONTAINER_NAME)
 
 echo ""
 echo "Container is up. Opening shell..."
