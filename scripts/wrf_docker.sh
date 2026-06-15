@@ -77,7 +77,7 @@ echo ""
 echo "=============================================="
 echo "Checking WPS_GEOG Data (This may take a while)"
 echo "=============================================="
-(docker logs -f $CONTAINER_NAME &) | grep -q -E "Download complete|Skipping download"
+docker logs -f $CONTAINER_NAME
 
 echo ""
 echo "Container is up. Opening shell..."
