@@ -32,8 +32,8 @@ RUN conda install -n base conda-libmamba-solver -y && \
 RUN conda create -n pywrf -c conda-forge --override-channels -y python=3.11 wrf-python netcdf4 cartopy matplotlib xarray metpy "geopandas>=0.14" && \
     conda run -n pywrf pip install "cdsapi>=0.7.7"
 
-RUN mkdir /home/wrfuser/wrf_data
-
+RUN mkdir -p /home/wrfuser/wrf_data /home/wrfuser/WPS_GEOG && \
+    chown -R wrfuser:wrfuser /home/wrfuser/wrf_data /home/wrfuser/WPS_GEOG
 
 RUN git clone https://github.com/HathewayWill/WRF_Python_Scripts.git
 RUN curl -fsSL -o WRF4.8.0_Install.bash https://raw.githubusercontent.com/ITU-METSEN/WRF_Docker/master/scripts/WRF4.8.0_Install.bash \

@@ -3,10 +3,10 @@ set -e
 
 GEOG_DIR="/home/wrfuser/WPS_GEOG"
 
-if [ ! -d "$GEOG_DIR" ] || [ -z "$(ls -A $GEOG_DIR 2> dev/null)" ]; then
+if [ ! -d "$GEOG_DIR" ] || [ -z "$(ls -A $GEOG_DIR 2> /dev/null)" ]; then
     echo "WPS_GEOG data not found. Starting download..."
 
-    cd /home/wrfuser/wrf_data
+    cd /home/wrfuser
     wget https://www2.mmm.ucar.edu/wrf/src/wps_files/geog_high_res_mandatory.tar.gz -O geog_high_res_mandatory.tar.gz
 
     echo "Extracting geographical data..."

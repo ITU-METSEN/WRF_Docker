@@ -10,6 +10,6 @@ services:
       - ${CONTAINER_PIPE_PATH:-./wrf_docker}:/home/wrfuser/wrf_data
     tty: true
     stdin_open: true
-
+    command: /bin/bash
 volumes:
   wrf_geog_data:
