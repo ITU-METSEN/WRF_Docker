@@ -7,6 +7,8 @@ WRF_DATA_DIR="/home/wrfuser/wrf_data"
 if [ "$(id -u)" = '0' ]; then
     chown -R wrfuser:wrfuser "$GEOG_DIR"
     chown -R wrfuser:wrfuser "$WRF_DATA_DIR"
+    export HOME=/home/wrfuser
+    export USER=wrfuser
     exec setpriv --reuid=wrfuser --regid=wrfuser --init-groups "$0" "$@"
 fi
 
