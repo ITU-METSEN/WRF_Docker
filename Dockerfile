@@ -41,11 +41,6 @@ RUN curl -fsSL -o WRF4.8.0_Install.bash https://raw.githubusercontent.com/ITU-ME
     && chmod +x WRF4.8.0_Install.bash
 RUN ./WRF4.8.0_Install.bash -arw
 
-COPY --chown=wrfuser:wrfuser entrypoint.sh /home/wrfuser/entrypoint.sh
-RUN chmod +x /home/wrfuser/entrypoint.sh
-ENTRYPOINT ["/home/wrfuser/entrypoint.sh"]
-
-
 RUN echo "alias ls='eza -l --color=always --group-directories-first --icons=always \$@ --git'" >> /home/wrfuser/.bashrc && \
     echo "alias la='eza -la --color=always --group-directories-first --icons=always \$@ --git'" >> /home/wrfuser/.bashrc && \
     echo "alias ll='eza -l --color=always --group-directories-first --icons=always \$@ --git'" >> /home/wrfuser/.bashrc && \
@@ -53,3 +48,8 @@ RUN echo "alias ls='eza -l --color=always --group-directories-first --icons=alwa
     echo "alias l.='eza -a | grep -e \"^\.\"' " >> /home/wrfuser/.bashrc && \
     echo "alias c='clear'" >> /home/wrfuser/.bashrc && \
     echo "alias vim='nvim'" >> /home/wrfuser/.bashrc
+
+USER root
+COPY --chown=wrfuser:wrfuser entrypoint.sh /home/wrfuser/entrypoint.sh
+RUN chmod +x /home/wrfuser/entrypoint.sh
+ENTRYPOINT ["/home/wrfuser/entrypoint.sh"]
