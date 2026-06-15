@@ -1,8 +1,15 @@
 services:
   wrf:
+    platform: linux/amd64
     image: ghcr.io/${IMAGE_NAME}:main
     container_name: wrf
+    environment:
+      - CDS_API_KEY=${CDS_API_KEY}
     volumes:
-      - ${CONTAINER_PIPE_PATH:-./wrf_docker}:/home/wrfuser/os_pipe
+      - wrf_geog_data:/home/wrfuser/WPS_GEOG
+      - ${CONTAINER_PIPE_PATH:-./wrf_docker}:/home/wrfuser/wrf_data
     tty: true
     stdin_open: true
+
+volumes:
+  wrf_geog_data:
