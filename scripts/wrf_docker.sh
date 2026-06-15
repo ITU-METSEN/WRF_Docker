@@ -77,9 +77,9 @@ echo ""
 echo "=============================================="
 echo "Checking WPS_GEOG Data (This may take a while)"
 echo "=============================================="
-docker logs -f $CONTAINER_NAME | sed '/Creating \/home\/wrfuser\/.cdsapirc/ q'
+docker logs -f $CONTAINER_NAME | grep -m 1 "Creating /home/wrfuser/.cdsapirc"
 
 echo ""
 echo "Container is up. Opening shell..."
 exec < /dev/tty
-docker exec -it $CONTAINER_NAME bash
+docker exec -it -u wrfuser $CONTAINER_NAME bash
