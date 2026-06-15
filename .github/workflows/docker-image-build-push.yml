@@ -3,7 +3,7 @@ name: Docker image build and push
 on:
   push:
     branches: [ "main" ]
-    tags: [ 'v*.*.*' ]
+    tags: [ 'v*.*' ]
     paths:
       - 'Dockerfile'
   pull_request:
