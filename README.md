@@ -8,7 +8,7 @@ Ubuntu 24.04 LTS, WRF version 4.8.0 and WPS 4.6.0 are used.
 
 - **One-liner code for WSL, Linux and MacOS:**
   ```sh
-  bash -c "$(curl -sSL https://raw.githubusercontent.com/itu-metsen/wrf_docker/master/scripts/wrf_docker.sh)"
+  bash -c "$(curl -sSL https://raw.githubusercontent.com/itu-metsen/wrf_docker/main/scripts/wrf_docker.sh)"
   ```
   At the installation pipe folder location between the os and the container will be asked. Default path is `$USR/Documents/wrf_docker`.
   
