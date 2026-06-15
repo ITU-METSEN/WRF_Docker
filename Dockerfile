@@ -30,9 +30,7 @@ RUN conda install -n base conda-libmamba-solver -y && \
     conda config --set solver libmamba
 
 RUN conda create -n pywrf -c conda-forge --override-channels -y python=3.11 wrf-python netcdf4 cartopy matplotlib xarray metpy "geopandas>=0.14" && \
-    conda activate pywrf && \
-    pip install "cdsapi>=0.7.7" && \
-    conda deactivate
+    conda run -n pywrf pip install "cdsapi>=0.7.7"
 
 RUN mkdir /home/wrfuser/wrf_data
 
