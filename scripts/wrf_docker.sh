@@ -60,6 +60,7 @@ fi
 #################################################
 export CONTAINER_PIPE_PATH="$DATA_PATH"
 export IMAGE_NAME="$GITHUB_REPO"
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
 echo "Downloading Docker Compose..."
 curl -sSL -o docker-compose.yml https://raw.githubusercontent.com/$GITHUB_REPO/main/scripts/docker-compose.yml
