@@ -67,7 +67,7 @@ curl -sSL -o docker-compose.yml https://raw.githubusercontent.com/$GITHUB_REPO/m
 
 echo ""
 echo "Pulling the latest WRF image from ghcr.io/$GITHUB_REPO..."
-docker compose pull
+docker pull --platform linux/amd64 ghcr.io/itu-metsen/wrf_docker:main
 
 echo "Starting the container..."
 docker compose up -d
